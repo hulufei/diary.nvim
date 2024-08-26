@@ -1,6 +1,6 @@
-(local {: autoload} (require :nfnl-plugin-example.nfnl.module))
-(local core (autoload :nfnl-plugin-example.nfnl.core))
-(local fs (autoload :nfnl-plugin-example.nfnl.fs))
+(local {: autoload} (require :diary.nfnl.module))
+(local core (autoload :diary.nfnl.core))
+(local fs (autoload :diary.nfnl.fs))
 
 (local config {:diary-dir "~/diary/"})
 

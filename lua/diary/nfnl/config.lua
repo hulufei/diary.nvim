@@ -1,11 +1,11 @@
 -- [nfnl] Compiled from fnl/nfnl/config.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local core = autoload("nfnl-plugin-example.nfnl.core")
-local fs = autoload("nfnl-plugin-example.nfnl.fs")
-local str = autoload("nfnl-plugin-example.nfnl.string")
-local fennel = autoload("nfnl-plugin-example.nfnl.fennel")
-local notify = autoload("nfnl-plugin-example.nfnl.notify")
+local core = autoload("diary.nfnl.core")
+local fs = autoload("diary.nfnl.fs")
+local str = autoload("diary.nfnl.string")
+local fennel = autoload("diary.nfnl.fennel")
+local notify = autoload("diary.nfnl.notify")
 local config_file_name = ".nfnl.fnl"
 local function find(dir)
   return fs.findfile(config_file_name, (dir .. ";"))

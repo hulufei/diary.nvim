@@ -1,7 +1,7 @@
 -- [nfnl] Compiled from fnl/nfnl/core.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local fennel = autoload("nfnl-plugin-example.nfnl.fennel")
+local fennel = autoload("diary.nfnl.fennel")
 local function rand(n)
   return (math.random() * (n or 1))
 end

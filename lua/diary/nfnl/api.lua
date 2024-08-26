@@ -1,10 +1,10 @@
 -- [nfnl] Compiled from fnl/nfnl/api.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local compile = autoload("nfnl-plugin-example.nfnl.compile")
-local config = autoload("nfnl-plugin-example.nfnl.config")
-local notify = autoload("nfnl-plugin-example.nfnl.notify")
-local fs = autoload("nfnl-plugin-example.nfnl.fs")
+local compile = autoload("diary.nfnl.compile")
+local config = autoload("diary.nfnl.config")
+local notify = autoload("diary.nfnl.notify")
+local fs = autoload("diary.nfnl.fs")
 local mod = {}
 mod["compile-all-files"] = function(dir)
   local dir0 = (dir or vim.fn.getcwd())

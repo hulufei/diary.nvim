@@ -1,11 +1,11 @@
 -- [nfnl] Compiled from fnl/nfnl/compile.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local core = autoload("nfnl-plugin-example.nfnl.core")
-local fs = autoload("nfnl-plugin-example.nfnl.fs")
-local fennel = autoload("nfnl-plugin-example.nfnl.fennel")
-local notify = autoload("nfnl-plugin-example.nfnl.notify")
-local config = autoload("nfnl-plugin-example.nfnl.config")
+local core = autoload("diary.nfnl.core")
+local fs = autoload("diary.nfnl.fs")
+local fennel = autoload("diary.nfnl.fennel")
+local notify = autoload("diary.nfnl.notify")
+local config = autoload("diary.nfnl.config")
 local mod = {}
 local header_marker = "[nfnl]"
 local function with_header(file, src)

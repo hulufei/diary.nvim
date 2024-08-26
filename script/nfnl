@@ -11,6 +11,6 @@ else
 fi
 
 SRC_DIR=deps/nfnl/lua/nfnl \
-	PROJECT=nfnl-plugin-example \
-	DEST_DIR=lua/nfnl-plugin-example \
+	PROJECT=diary \
+	DEST_DIR=lua/diary \
 	./deps/nfnl/script/embed-library

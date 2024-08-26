@@ -1,7 +1,7 @@
 -- [nfnl] Compiled from fnl/nfnl/string.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local core = autoload("nfnl-plugin-example.nfnl.core")
+local core = autoload("diary.nfnl.core")
 local function join(...)
   local args = {...}
   local function _2_(...)

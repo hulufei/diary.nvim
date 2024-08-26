@@ -1,8 +1,8 @@
--- [nfnl] Compiled from fnl/nfnl-plugin-example/init.fnl by https://github.com/Olical/nfnl, do not edit.
-local _local_1_ = require("nfnl-plugin-example.nfnl.module")
+-- [nfnl] Compiled from fnl/diary.nvim/init.fnl by https://github.com/Olical/nfnl, do not edit.
+local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
-local core = autoload("nfnl-plugin-example.nfnl.core")
-local fs = autoload("nfnl-plugin-example.nfnl.fs")
+local core = autoload("diary.nfnl.core")
+local fs = autoload("diary.nfnl.fs")
 local config = {["diary-dir"] = "~/diary/"}
 local function member_3f(val, list)
   local function _2_(_241)

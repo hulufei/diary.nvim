@@ -1,6 +1,6 @@
 (local {: describe : it} (require :plenary.busted))
 (local assert (require :luassert.assert))
-(local core (require :nfnl-plugin-example.nfnl.core))
+(local core (require :diary.nfnl.core))
 
 (describe
   "first"
