@@ -13,7 +13,7 @@ A simple and efficient diary plugin for Neovim, designed to streamline the proce
 
 ## Installation
 
-To install the plugin using [lazy.nvim](https://github.com/folke/lazy.nvim), add the following configuration to your `init.lua` or `init.vim`:
+To install the plugin using [lazy.nvim](https://github.com/folke/lazy.nvim), add the following configuration to your `init.lua`:
 
 ```lua
 {
@@ -22,6 +22,7 @@ To install the plugin using [lazy.nvim](https://github.com/folke/lazy.nvim), add
     "diary-dir" = "~/path/to/your/diary"
   }
 }
+```
 
 ## Unlicensed
 
