@@ -49,13 +49,21 @@
   (local bufs (list-bufs-match-dir path))
   (unpack (filter-current-tab-wins (list-wins-with-bufs bufs))))
 
+(fn tab-view [name]
+  (let [dir? (= (vim.fn.isdirectory name) 1)
+        dir (if dir? name (vim.fs.dirname name))]
+    (tab-open
+      (get-win-match-dir dir)
+      (when (not dir?)
+        (vim.cmd.edit name))
+      (do
+        (if dir?
+          (vim.cmd.tabnew)
+          (vim.cmd.tabnew name))
+        (vim.cmd.tcd dir)))))
+
 (fn tab-view-diary [filename]
-  (let [diary (.. config.diary-dir filename)]
-    (tab-open (get-win-match-dir config.diary-dir)
-              (vim.cmd.edit diary)
-              (do
-                (vim.cmd.tabnew diary)
-                (vim.cmd.tcd config.diary-dir)))))
+  (tab-view (.. config.diary-dir filename)))
 
 (fn tab-new-diary []
   (let [diary (.. (os.date "%Y-%m-%d") ".md")]
@@ -148,4 +156,4 @@
   (vim.api.nvim_create_user_command :YesterdayOnceMore review-yesterday-once-more {})
   (vim.api.nvim_create_user_command :DiaryGenerateLinks write-diary-index {}))
 
-{: setup }
+{: setup :tab_view tab-view}

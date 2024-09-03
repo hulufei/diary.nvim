@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/diary.nvim/init.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/diary/init.fnl by https://github.com/Olical/nfnl, do not edit.
 local _local_1_ = require("diary.nfnl.module")
 local autoload = _local_1_["autoload"]
 local core = autoload("diary.nfnl.core")
@@ -80,16 +80,33 @@ local function get_win_match_dir(path)
   local bufs = list_bufs_match_dir(path0)
   return unpack(filter_current_tab_wins(list_wins_with_bufs(bufs)))
 end
-local function tab_view_diary(filename)
-  local diary = (config["diary-dir"] .. filename)
-  local memo_tab_win_2_auto = get_win_match_dir(config["diary-dir"])
+local function tab_view(name)
+  local dir_3f = (vim.fn.isdirectory(name) == 1)
+  local dir
+  if dir_3f then
+    dir = name
+  else
+    dir = vim.fs.dirname(name)
+  end
+  local memo_tab_win_2_auto = get_win_match_dir(dir)
   if memo_tab_win_2_auto then
     vim.fn.win_gotoid(memo_tab_win_2_auto)
-    return vim.cmd.edit(diary)
+    if not dir_3f then
+      return vim.cmd.edit(name)
+    else
+      return nil
+    end
   else
-    vim.cmd.tabnew(diary)
-    return vim.cmd.tcd(config["diary-dir"])
+    if dir_3f then
+      vim.cmd.tabnew()
+    else
+      vim.cmd.tabnew(name)
+    end
+    return vim.cmd.tcd(dir)
   end
+end
+local function tab_view_diary(filename)
+  return tab_view((config["diary-dir"] .. filename))
 end
 local function tab_new_diary()
   local diary = (os.date("%Y-%m-%d") .. ".md")
@@ -157,13 +174,13 @@ local function gen_location_list(filenames)
 end
 local function review_yesterday_once_more()
   local matched_diaries = find_yesterday_once_more_diary()
-  local _17_ = #matched_diaries
-  if (_17_ == 0) then
+  local _20_ = #matched_diaries
+  if (_20_ == 0) then
     return nil
-  elseif (_17_ == 1) then
+  elseif (_20_ == 1) then
     return tab_view_diary(core.first(matched_diaries))
   else
-    local _ = _17_
+    local _ = _20_
     vim.fn.setloclist(0, gen_location_list(matched_diaries))
     return vim.cmd.lopen()
   end
@@ -171,9 +188,9 @@ end
 local function group_diary()
   local results = {}
   for _, diary in ipairs(get_diary_file_list()) do
-    local _let_19_ = vim.split(diary, "-")
-    local year = _let_19_[1]
-    local month = _let_19_[2]
+    local _let_22_ = vim.split(diary, "-")
+    local year = _let_22_[1]
+    local month = _let_22_[2]
     if not results[year] then
       results[year] = {}
     else
@@ -187,20 +204,20 @@ local function group_diary()
   return results
 end
 local function desc_strnum(xs)
-  local function _22_(_241, _242)
+  local function _25_(_241, _242)
     return (tonumber(_241) > tonumber(_242))
   end
-  table.sort(xs, _22_)
+  table.sort(xs, _25_)
   return xs
 end
 local function parse_diary_day(diary)
   return tonumber(string.match(diary, "(%d%d)%.md$"))
 end
 local function desc_diary_monthly(xs)
-  local function _23_(_241, _242)
+  local function _26_(_241, _242)
     return (parse_diary_day(_241) > parse_diary_day(_242))
   end
-  table.sort(xs, _23_)
+  table.sort(xs, _26_)
   return xs
 end
 local function write_diary_index()
@@ -216,7 +233,7 @@ local function write_diary_index()
         return error(..., 0)
       end
     end
-    local function _25_()
+    local function _28_()
       fout:write("# Diary\n\n")
       for _, year in ipairs(desc_strnum(core.keys(group))) do
         fout:write(("## " .. year .. "\n\n"))
@@ -233,7 +250,7 @@ local function write_diary_index()
       end
       return nil
     end
-    close_handlers_12_auto(_G.xpcall(_25_, (package.loaded.fennel or _G.debug or {}).traceback))
+    close_handlers_12_auto(_G.xpcall(_28_, (package.loaded.fennel or _G.debug or {}).traceback))
   end
   return tab_view_diary(outfile)
 end
@@ -247,4 +264,4 @@ local function setup(opts)
   vim.api.nvim_create_user_command("YesterdayOnceMore", review_yesterday_once_more, {})
   return vim.api.nvim_create_user_command("DiaryGenerateLinks", write_diary_index, {})
 end
-return {setup = setup}
+return {setup = setup, tab_view = tab_view}
